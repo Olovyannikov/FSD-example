@@ -1,0 +1,6 @@
+allowBuilds:
+  '@evilmartians/lefthook': true
+  '@swc/core': true
+  ejs: true
+  lefthook: true
+  unrs-resolver: true
