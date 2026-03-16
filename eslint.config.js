@@ -26,11 +26,9 @@ export default eslintTypescript.config(
     vitest.configs.recommended,
     effector.flatConfigs.recommended,
     effector.flatConfigs.react,
-    // effector.flatConfigs.patronum,
-    // effector.flatConfigs.scope,
-    // effector.flatConfigs.typescript,
-    // effector.flatConfigs.future,
-    // effector.flatConfigs.errors,
+    effector.flatConfigs.patronum,
+    effector.flatConfigs.scope,
+    effector.flatConfigs.future,
     {
         languageOptions: {
             parser: typescriptParser,
