@@ -1,0 +1,12 @@
+.indicator {
+  --indicator-color: var(--mantine-color-green-7);
+
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-xxs);
+
+  [data-with-label] {
+    font-size: var(--size-xs);
+    line-height: 1.25;
+  }
+}
