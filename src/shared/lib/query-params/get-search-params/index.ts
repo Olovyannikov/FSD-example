@@ -8,6 +8,6 @@ export const getSearchParams = ({ keys, url }: { url: string; keys: string[] }) 
     return params;
 };
 
-export const DEFAULT_PRODUCTS_QUERY_PARAMS = {
+export const DEFAULT_QUERY_PARAMS = {
     perPage: '12',
 };

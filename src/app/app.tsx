@@ -5,6 +5,7 @@ import { allSettled, fork } from 'effector';
 import { Provider } from 'effector-react';
 import { createBrowserHistory } from 'history';
 
+import { appStarted } from '@/shared/config';
 import { router } from '@/shared/router';
 
 import { ThemeProvider } from './providers';
@@ -17,6 +18,10 @@ const root = document.getElementById('root') as HTMLDivElement;
 const history = createBrowserHistory();
 
 const scope = fork();
+
+await allSettled(appStarted, {
+    scope,
+});
 
 await allSettled(router.setHistory, {
     scope,

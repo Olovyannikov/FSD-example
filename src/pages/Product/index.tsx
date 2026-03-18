@@ -1,10 +1,9 @@
 import { createLazyRouteView } from '@argon-router/react';
 import { sample } from 'effector';
 
+import { getProductBySlugQuery } from '@/shared/api';
 import { routes } from '@/shared/router';
 import { PageLoader } from '@/shared/ui';
-
-import { getProductBySlugQuery } from '@/entities/Product';
 
 import { RootLayout } from '@/widgets/root-layout';
 

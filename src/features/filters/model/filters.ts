@@ -1,11 +1,12 @@
 import { combine, createEvent, restore, sample } from 'effector';
 import { persist } from 'effector-storage/query';
-import { debounce } from 'patronum';
+import { debounce, spread } from 'patronum';
+import { z } from 'zod';
 
 import { appStarted } from '@/shared/config';
 import { createModel } from '@/shared/lib/effector';
-import { DEFAULT_PRODUCTS_QUERY_PARAMS } from '@/shared/lib/query-params';
-import { routes } from '@/shared/router';
+import { DEFAULT_QUERY_PARAMS } from '@/shared/lib/query-params';
+import { router, routes } from '@/shared/router';
 
 import { ProductModel } from '@/entities/Product';
 
@@ -35,7 +36,7 @@ export const FiltersModel = createModel(() => {
     });
 
     const perPageChanged = createEvent<string>();
-    const $perPage = restore(perPageChanged, DEFAULT_PRODUCTS_QUERY_PARAMS.perPage);
+    const $perPage = restore(perPageChanged, DEFAULT_QUERY_PARAMS.perPage);
     persist({
         store: $perPage,
         key: 'perPage',
@@ -75,7 +76,33 @@ export const FiltersModel = createModel(() => {
         target: ProductModel.productsUpdatedFullUpdate,
     });
 
+    const searchTracker = router.trackQuery({
+        check: appStarted,
+        parameters: z.object({
+            searchTerm: z.string().optional(),
+            page: z.string().optional().default('1'),
+            perPage: z.string().optional().default('12'),
+            sort: z
+                .union([z.literal('high-price'), z.literal('low-price'), z.literal('newest'), z.literal('oldest')])
+                .optional()
+                .default('high-price'),
+        }),
+        forRoutes: [routes.home],
+    });
+
+    sample({
+        clock: searchTracker.entered,
+        target: spread({
+            page: $page,
+            sort: $sort,
+            perPage: $perPage,
+            searchTerm: [$query, $search],
+        }),
+    });
+
     return {
+        searchTracker,
+
         $filters,
         $query,
         $page,

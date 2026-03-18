@@ -1,3 +1,5 @@
+import type { User } from '../user/dto';
+
 interface Category {
     id: number;
     name: string;
@@ -27,18 +29,6 @@ export interface Product {
     likes: Like[];
     category: Category;
     user: User;
-}
-
-export interface User {
-    id: string;
-    email: string;
-    name: string;
-    avatarPath: string;
-    about: string;
-    phone: string;
-    roles: string[];
-    likes: Like[];
-    password: string;
 }
 
 export type ProductBySlugResponseDTO = Product;

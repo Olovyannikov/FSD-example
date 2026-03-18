@@ -1,12 +1,11 @@
 import { createEvent, createStore, sample } from 'effector';
+import { createAction } from 'effector-action';
 import { uniqBy } from 'lodash-es';
 
+import { getProductsQuery, type Product, type ProductsRequestDTO } from '@/shared/api';
 import { createModel } from '@/shared/lib/effector';
 
-import { getProductsQuery } from '../api';
-import type { ProductsRequestDTO } from '../api/dto';
 import { PER_PAGE } from '../lib';
-import type { Product } from './types';
 
 export const ProductModel = createModel(() => {
     const productsUpdated = createEvent<Partial<ProductsRequestDTO>>();
@@ -15,22 +14,23 @@ export const ProductModel = createModel(() => {
     const $productsCount = createStore(1);
 
     const $products = createStore<Product[]>([]).reset(productsUpdatedFullUpdate);
-    sample({
-        clock: getProductsQuery.finished.success,
-        source: $products,
-        fn: (data, payload) => uniqBy([...data, ...payload.result.products], 'id'),
-        target: $products,
+    createAction(getProductsQuery.finished.success, {
+        target: {
+            $products,
+            $productsCount,
+        },
+        source: {
+            $products,
+        },
+        fn: (target, { products }, { result }) => {
+            target.$products(uniqBy([...products, ...result.products], 'id'));
+            target.$productsCount(Math.ceil(result.length / PER_PAGE));
+        },
     });
 
     sample({
         clock: [productsUpdated],
         target: getProductsQuery.start,
-    });
-
-    sample({
-        clock: getProductsQuery.finished.success,
-        fn: (data) => Math.ceil(data.result.length / PER_PAGE),
-        target: $productsCount,
     });
 
     return {

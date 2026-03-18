@@ -1,4 +1,4 @@
-import { createRequestFx } from './create-request-fx';
+import { createRequestFx } from '../lib/effector';
 
 export const createInternalRequestFx = createRequestFx({
     baseURL: import.meta.env.INTERNAL_API_URL ?? 'https://api.v2.react-learning.ru',

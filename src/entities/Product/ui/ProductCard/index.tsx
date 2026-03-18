@@ -1,7 +1,9 @@
-import type { ReactNode } from 'react';
+import { type ReactNode, useMemo } from 'react';
+import { Link } from '@argon-router/react';
 import { Anchor, Box, Image, Stack, Text, Title } from '@mantine/core';
 
 import { useIsLarge } from '@/shared/lib/media';
+import { routes } from '@/shared/router';
 
 interface ProductProps {
     id: string;
@@ -33,27 +35,34 @@ export const ProductCard = ({
 }: ProductProps) => {
     const isLarge = useIsLarge();
 
-    const discountPrice = discount ? price - price * (discount / 100) : price;
+    const discountPrice = useMemo(() => (discount ? price - price * (discount / 100) : price), [discount, price]);
+    const imageWidth = useMemo(() => (isLarge ? 236 : 168), [isLarge]);
+    const imageHeight = useMemo(() => (isLarge ? 187 : 125), [isLarge]);
+    const imageFallbackSrc = useMemo(
+        () => `https://placehold.co/${isLarge ? '236x168' : '187x125'}?text=Фото отсутствует`,
+        [isLarge]
+    );
 
     return (
         <Box pos='relative'>
             {isAuth && favoriteActionSlot}
-            <Anchor component='a' c='black' href={`/product/${slug}`}>
+            {/* @ts-expect-error polymorph */}
+            <Anchor component={Link} c='black' to={routes.product} params={{ slug }}>
                 <Stack gap='sm' mb='xl'>
                     <Box
                         style={{
                             overflow: 'hidden',
                         }}
                         component='picture'
-                        w={isLarge ? 236 : 168}
-                        h={isLarge ? 187 : 125}
+                        w={imageWidth}
+                        h={imageHeight}
                     >
                         <Image
-                            width={isLarge ? 236 : 168}
-                            height={isLarge ? 187 : 125}
                             src={images}
+                            width={imageWidth}
+                            height={imageHeight}
+                            fallbackSrc={imageFallbackSrc}
                             alt={`${description} изображение`}
-                            fallbackSrc={`https://placehold.co/${isLarge ? '236x168' : '187x125'}?text=Фото отсутствует`}
                         />
                     </Box>
                     <Box pt='sm' pos='relative'>

@@ -1,3 +1,5 @@
+import { createEffect } from 'effector';
+
 class StorageService {
     setItem<T extends string>(key: string, value: T) {
         try {
@@ -52,3 +54,7 @@ class StorageService {
 }
 
 export const STORAGE = new StorageService();
+
+export const clearStorageFx = createEffect(() => {
+    STORAGE.clear();
+});

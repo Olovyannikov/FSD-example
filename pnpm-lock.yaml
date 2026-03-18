@@ -13,6 +13,15 @@ importers:
             '@argon-router/react':
                 specifier: 1.0.0-rc.0
                 version: 1.0.0-rc.0(effector-action@1.2.2(effector@23.4.4)(patronum@2.3.0(effector@23.4.4)))(effector-react@23.3.0(effector@23.4.4)(react@19.2.4))(effector@23.4.4)(patronum@2.3.0(effector@23.4.4))(query-string@9.3.1)(react@19.2.4)
+            '@effector-reform/core':
+                specifier: ^0.16.0
+                version: 0.16.0(@withease/contracts@1.1.0)(effector@23.4.4)(patronum@2.3.0(effector@23.4.4))
+            '@effector-reform/react':
+                specifier: ^0.16.0
+                version: 0.16.0(@withease/contracts@1.1.0)(effector-react@23.3.0(effector@23.4.4)(react@19.2.4))(effector@23.4.4)(patronum@2.3.0(effector@23.4.4))(react@19.2.4)
+            '@effector-reform/zod':
+                specifier: ^0.16.0
+                version: 0.16.0(@withease/contracts@1.1.0)(effector@23.4.4)(patronum@2.3.0(effector@23.4.4))
             '@farfetched/core':
                 specifier: ^0.15.0
                 version: 0.15.0(effector@23.4.4)
@@ -28,6 +37,9 @@ importers:
             '@mantine/notifications':
                 specifier: ^8.3.17
                 version: 8.3.17(@mantine/core@8.3.17(@mantine/hooks@8.3.17(react@19.2.4))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@mantine/hooks@8.3.17(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+            '@mantine/nprogress':
+                specifier: ^8.3.18
+                version: 8.3.18(@mantine/core@8.3.17(@mantine/hooks@8.3.17(react@19.2.4))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@mantine/hooks@8.3.17(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
             '@tabler/icons-react':
                 specifier: ^3.40.0
                 version: 3.40.0(react@19.2.4)
@@ -82,6 +94,9 @@ importers:
             usehooks-ts:
                 specifier: ^3.1.1
                 version: 3.1.1(react@19.2.4)
+            zod:
+                specifier: ^4.3.6
+                version: 4.3.6
         devDependencies:
             '@commitlint/cli':
                 specifier: ^20.5.0
@@ -616,6 +631,32 @@ packages:
             }
         engines: { node: '>=18' }
 
+    '@effector-reform/core@0.16.0':
+        resolution:
+            {
+                integrity: sha512-JuaJH2ncZFd4MG/h/0hauasBJLNZ0czWQY1RH5a+As0yG16lGLY/mD+vCEX5H17Ar+MxkZLJms3QLPZ72ZA8Zg==,
+            }
+        peerDependencies:
+            '@withease/contracts': '>=1.1.0 <2'
+            effector: '>=23.2.2 <24'
+            patronum: '>=2.2.0 <3'
+
+    '@effector-reform/react@0.16.0':
+        resolution:
+            {
+                integrity: sha512-0ka+7sQuNmknvpq4qLlB1VLMkKaug4bT90Sgk6eBc8ggZV0jwUgR2PyBDJQKuHeJr231RdRUOp+b9IoEJyju4g==,
+            }
+        peerDependencies:
+            effector: '>=23.2.2 <24'
+            effector-react: '>=23.2.1 <24'
+            react: '>=18.2.0 <20'
+
+    '@effector-reform/zod@0.16.0':
+        resolution:
+            {
+                integrity: sha512-x7XLzsFaLBgyXfrUFM1HPqjAGflvJD3uaV2yMSysmbvGgTlodKrCNEKkn5E+MC2L8zuAlbk3DUMsllBK4y/axQ==,
+            }
+
     '@effector/swc-plugin@1.0.0':
         resolution:
             {
@@ -877,10 +918,29 @@ packages:
             react: ^18.x || ^19.x
             react-dom: ^18.x || ^19.x
 
+    '@mantine/nprogress@8.3.18':
+        resolution:
+            {
+                integrity: sha512-cTzwOGIQZkR6q7dSmgNJGxWF3+c2MkAQmWYuFuMbKHZOHNf2TnF7oUZhQFh3q+Gpx2h6Ej2C39DksG6SCz6daA==,
+            }
+        peerDependencies:
+            '@mantine/core': 8.3.18
+            '@mantine/hooks': 8.3.18
+            react: ^18.x || ^19.x
+            react-dom: ^18.x || ^19.x
+
     '@mantine/store@8.3.17':
         resolution:
             {
                 integrity: sha512-uwI/0lhzSwdfdzqA6YlnlNP/9KjUc5SxbuB3OH/P8aasn2utsVNsKIYDlAU/oFsjggSAoQxzEGR1V2ktTjLlXg==,
+            }
+        peerDependencies:
+            react: ^18.x || ^19.x
+
+    '@mantine/store@8.3.18':
+        resolution:
+            {
+                integrity: sha512-i+QRTLmZzLldea0egtUVnGALd6UMIu8jd44nrNWBSNIXJU/8B6rMlC6gyX+l4szopZSuOaaNJIXkqRdC1gQsVg==,
             }
         peerDependencies:
             react: ^18.x || ^19.x
@@ -2193,6 +2253,12 @@ packages:
         resolution:
             {
                 integrity: sha512-YXgQ7JjaO18NeK2K9VTbDHaFy62WrObMa6XERNfNOkAhD1F1oDSf3ZJ7K6GqabZ0BvSDHajp8qfS5Sa2I9n8uQ==,
+            }
+
+    '@withease/contracts@1.1.0':
+        resolution:
+            {
+                integrity: sha512-TwM/nMXUFaLTRT5MpJx1654L0PZGV1/hFr1Ykb9aUwdIAi5rnmLALyvSPaESjjzxwLOBQvlINQavFJpXITNaAw==,
             }
 
     '@withease/factories@1.0.5':
@@ -7972,6 +8038,31 @@ snapshots:
             gonzales-pe: 4.3.0
             node-source-walk: 7.0.1
 
+    '@effector-reform/core@0.16.0(@withease/contracts@1.1.0)(effector@23.4.4)(patronum@2.3.0(effector@23.4.4))':
+        dependencies:
+            '@withease/contracts': 1.1.0
+            effector: 23.4.4
+            fast-deep-equal: 3.1.3
+            patronum: 2.3.0(effector@23.4.4)
+
+    '@effector-reform/react@0.16.0(@withease/contracts@1.1.0)(effector-react@23.3.0(effector@23.4.4)(react@19.2.4))(effector@23.4.4)(patronum@2.3.0(effector@23.4.4))(react@19.2.4)':
+        dependencies:
+            '@effector-reform/core': 0.16.0(@withease/contracts@1.1.0)(effector@23.4.4)(patronum@2.3.0(effector@23.4.4))
+            effector: 23.4.4
+            effector-react: 23.3.0(effector@23.4.4)(react@19.2.4)
+            react: 19.2.4
+        transitivePeerDependencies:
+            - '@withease/contracts'
+            - patronum
+
+    '@effector-reform/zod@0.16.0(@withease/contracts@1.1.0)(effector@23.4.4)(patronum@2.3.0(effector@23.4.4))':
+        dependencies:
+            '@effector-reform/core': 0.16.0(@withease/contracts@1.1.0)(effector@23.4.4)(patronum@2.3.0(effector@23.4.4))
+        transitivePeerDependencies:
+            - '@withease/contracts'
+            - effector
+            - patronum
+
     '@effector/swc-plugin@1.0.0': {}
 
     '@emnapi/core@1.9.0':
@@ -8155,7 +8246,19 @@ snapshots:
             react-dom: 19.2.4(react@19.2.4)
             react-transition-group: 4.4.5(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
 
+    '@mantine/nprogress@8.3.18(@mantine/core@8.3.17(@mantine/hooks@8.3.17(react@19.2.4))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@mantine/hooks@8.3.17(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+        dependencies:
+            '@mantine/core': 8.3.17(@mantine/hooks@8.3.17(react@19.2.4))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+            '@mantine/hooks': 8.3.17(react@19.2.4)
+            '@mantine/store': 8.3.18(react@19.2.4)
+            react: 19.2.4
+            react-dom: 19.2.4(react@19.2.4)
+
     '@mantine/store@8.3.17(react@19.2.4)':
+        dependencies:
+            react: 19.2.4
+
+    '@mantine/store@8.3.18(react@19.2.4)':
         dependencies:
             react: 19.2.4
 
@@ -8850,6 +8953,8 @@ snapshots:
             '@vue/shared': 3.5.30
 
     '@vue/shared@3.5.30': {}
+
+    '@withease/contracts@1.1.0': {}
 
     '@withease/factories@1.0.5': {}
 

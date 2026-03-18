@@ -2,9 +2,13 @@ import type { ReactNode } from 'react';
 import type { Route } from '@argon-router/core';
 import { Link, useLink } from '@argon-router/react';
 import { Indicator, Text } from '@mantine/core';
+import { useStoreMap, useUnit } from 'effector-react';
 
-// import { useUnit } from 'effector-react';
+import { getUserByIdQuery } from '@/shared/api';
 import { useIsLarge } from '@/shared/lib/media';
+
+import { CartModel } from '@/entities/Cart';
+import { UserModel } from '@/entities/User';
 
 import s from './NavItem.module.css';
 interface NavigationItemProps {
@@ -31,18 +35,17 @@ interface NavigationItemProps {
 }
 
 const pathWithIndicator = (path: string) => path === '/favorites' || path === '/cart';
-// const isFavoritesPath = (path: string) => path === '/favorites';
+const isFavoritesPath = (path: string) => path === '/favorites';
 
 export const NavigationItem = ({ item }: NavigationItemProps) => {
     const isLarge = useIsLarge();
 
-    // const { cartCount, isAuthorized, favorites } = useUnit({
-    //     isAuthorized: userModel.$isAuthorized,
-    //     favorites: getUserByIdQuery.$data.map((data) => data?.likes),
-    //     cartCount: cartModel.$cartProductsCount,
-    // });
+    const { cartCount, isAuthorized } = useUnit({
+        isAuthorized: UserModel.$isAuthorized,
+        cartCount: CartModel.$cartProductsCount,
+    });
 
-    // const favoritesCount = favorites?.length ?? 0;
+    const favoritesCount = useStoreMap(getUserByIdQuery.$data, (data) => data?.likes?.length ?? 0);
 
     const Wrapper = ({ children, path }: { children: ReactNode; path: Route }) => {
         const { path: currentPath } = useLink(path, undefined);
@@ -55,8 +58,8 @@ export const NavigationItem = ({ item }: NavigationItemProps) => {
                     display='flex'
                     size='var(--size-sm)'
                     className={s.indicator}
-                    // label={isFavoritesPath(currentPath) ? favoritesCount : cartCount}
-                    // disabled={isFavoritesPath(currentPath) ? favoritesCount < 1 : cartCount < 1}
+                    label={isFavoritesPath(currentPath) ? favoritesCount : cartCount}
+                    disabled={isFavoritesPath(currentPath) ? favoritesCount < 1 : cartCount < 1}
                 >
                     {children}
                 </Indicator>
@@ -66,14 +69,14 @@ export const NavigationItem = ({ item }: NavigationItemProps) => {
         return <>{children}</>;
     };
 
-    // if (!isAuthorized && item.protectedPath) {
-    //     return (
-    //         <Link to={item.protectedPath} data-testid={item.testId}>
-    //             {item.icon}
-    //             {isLarge ? null : <Text fz={9}>{item.name}</Text>}
-    //         </Link>
-    //     );
-    // }
+    if (!isAuthorized && item.protectedPath) {
+        return (
+            <Link to={item.protectedPath} data-testid={item.testId}>
+                {item.icon}
+                {isLarge ? null : <Text fz={9}>{item.name}</Text>}
+            </Link>
+        );
+    }
 
     return (
         <Link to={item.path}>

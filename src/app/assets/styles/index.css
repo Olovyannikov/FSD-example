@@ -1,6 +1,7 @@
 @import url("@mantine/core/styles.layer.css");
 @import url("@mantine/notifications/styles.layer.css");
 @import url("@mantine/carousel/styles.layer.css");
+@import url("@mantine/nprogress/styles.layer.css");
 
 /* General */
 @import url("general/_variables.css");

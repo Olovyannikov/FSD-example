@@ -1,7 +1,7 @@
 import { createEffect } from 'effector';
 import { type FetchOptions, ofetch } from 'ofetch';
 
-import { STORAGE } from '../../lib/storage';
+import { STORAGE } from '../../storage';
 
 type CreateRequestParams = FetchOptions & {
     url: string;

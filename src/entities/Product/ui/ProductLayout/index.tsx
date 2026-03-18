@@ -1,9 +1,8 @@
-import type { ReactNode } from 'react';
+import { type ReactNode, useMemo } from 'react';
 import { Divider, Flex, Group, Image, NumberFormatter, Paper, Stack, Text, Title } from '@mantine/core';
 
+import type { Product as IProduct } from '@/shared/api';
 import { useIsLarge } from '@/shared/lib/media';
-
-import type { Product as IProduct } from '../../api/dto';
 
 interface ProductProps extends Partial<IProduct> {
     actionSlot?: ReactNode;
@@ -11,7 +10,10 @@ interface ProductProps extends Partial<IProduct> {
 
 export const Product = ({ images, description, price, discount, stock, name, actionSlot }: ProductProps) => {
     const isLarge = useIsLarge();
-    const discountPrice = discount && price ? price - price * (discount / 100) : price;
+    const discountPrice = useMemo(
+        () => (discount && price ? price - price * (discount / 100) : price),
+        [discount, price]
+    );
 
     return (
         <Paper>

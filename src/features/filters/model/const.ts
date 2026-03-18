@@ -22,4 +22,4 @@ export const SORT_VALUES: Sort[] = [
         label: 'Сначала старые',
         value: 'oldest',
     },
-];
+] as const;

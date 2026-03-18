@@ -1,10 +1,9 @@
 import { createLazyRouteView } from '@argon-router/react';
 import { sample } from 'effector';
 
+import { getProductsQuery } from '@/shared/api';
 import { routes } from '@/shared/router';
 import { PageLoader } from '@/shared/ui';
-
-import { getProductsQuery } from '@/entities/Product';
 
 import { FiltersModel } from '@/features/filters';
 
@@ -18,7 +17,6 @@ export const IndexPageLazyScreen = createLazyRouteView({
 });
 
 sample({
-    clock: routes.home.opened,
-    source: FiltersModel.$filters,
+    clock: FiltersModel.searchTracker.entered,
     target: getProductsQuery.start,
 });

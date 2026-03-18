@@ -14,7 +14,7 @@ pre-commit:
     solidarity:
       run: solidarity
     circular:
-      run: pnpm exec madge --circular --extensions ts,tsx src
+      run: pnpm run lint:circular
     unit-test:
       run: pnpm run test:unit
 

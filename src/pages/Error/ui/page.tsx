@@ -1,5 +1,7 @@
 import { Container, Group, Text, Title } from '@mantine/core';
 
+import { appStarted } from '@/shared/config';
+
 import { RootLayout } from '@/widgets/root-layout';
 
 import Illustration from './illustration.svg?react';
@@ -7,6 +9,7 @@ import { ReturnToHomePage } from './return-to-home-page';
 
 import s from './ErrorPage.module.css';
 
+appStarted();
 export default function ErrorPage() {
     return (
         <RootLayout title='Dogfood | 404 произошла ошибка'>

@@ -6,12 +6,12 @@ import { getDeclinations } from '@/shared/lib/declinations';
 import { useIsLarge } from '@/shared/lib/media';
 
 import { ProductCard, ProductModel, PRODUCTS_SCROLL_THRESHOLD } from '@/entities/Product';
+import { UserModel } from '@/entities/User';
 
+import { AddToCart } from '@/features/add-to-cart';
 import { FiltersModel } from '@/features/filters';
 
 import { ProductsModel } from '../../model';
-
-const isAuth = false;
 
 export function Products() {
     const isLarge = useIsLarge();
@@ -19,6 +19,7 @@ export function Products() {
     const { query, page, incrementPage } = useUnitShape(FiltersModel);
     const { products, isLoading, productsCount } = useUnitShape(ProductModel);
     const { isEmpty } = useUnitShape(ProductsModel);
+    const { isAuthorized } = useUnitShape(UserModel);
 
     const { ref } = useIntersectionObserver({
         initialIsIntersecting: false,
@@ -69,8 +70,8 @@ export function Products() {
                         >
                             <ProductCard
                                 {...product}
-                                isAuth={isAuth}
-                                // actionSlot={<CartButton product={product} />}
+                                isAuth={isAuthorized}
+                                actionSlot={<AddToCart product={product} />}
                                 // favoriteActionSlot={<FavoriteButton productId={product.id} />}
                             />
                         </Grid.Col>
