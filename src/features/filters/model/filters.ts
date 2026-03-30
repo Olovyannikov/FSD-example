@@ -18,6 +18,7 @@ export const FiltersModel = createModel(() => {
         source: searchChanged,
         timeout: DEBOUNCE_TIME,
     });
+
     const $search = restore(searchChanged, '');
     const $query = restore(debouncedSearchChanged, '');
     persist({

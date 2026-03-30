@@ -5,14 +5,14 @@ import { useIsLarge } from '@/shared/lib/media';
 
 import { CartModel, CartProduct } from '@/entities/Cart';
 
-import { AddToCart } from '@/features/add-to-cart';
+import { AddToCart, AddToCartModel } from '@/features/add-to-cart';
 
 export function CartProducts() {
     const isLarge = useIsLarge();
 
     const { products, onProductRemoveFromCart } = useUnit({
         products: CartModel.$cartProducts,
-        onProductRemoveFromCart: CartModel.cartProductTotalRemoved,
+        onProductRemoveFromCart: AddToCartModel.cartProductTotalRemoved,
     });
 
     const list = useList(CartModel.$cart, ({ count, product }) => (
