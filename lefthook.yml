@@ -1,8 +1,12 @@
-pre-commit:
-  parallel: true
+fsd:
+  piped: true
   commands:
     fsd:
       run: pnpm run lint:fsd
+
+frontend:
+  piped: true
+  commands:
     eslint:
       glob: '*.{ts,tsx,js,jsx}'
       run: pnpm run lint:ts
@@ -11,10 +15,24 @@ pre-commit:
       run: pnpm run lint:css {staged_files}
     prettier:
       run: pnpm exec prettier --write {staged_files} && git add {staged_files}
+
+environment:
+  piped: true
+  commands:
     solidarity:
       run: solidarity
     circular:
       run: pnpm run lint:circular
+
+pre-commit:
+  parallel: true
+  commands:
+    fsd:
+      run: LEFTHOOK_QUIET=meta,success lefthook run fsd
+    frontend:
+      run: LEFTHOOK_QUIET=meta,success lefthook run frontend
+    environment:
+      run: LEFTHOOK_QUIET=meta,success lefthook run environment
     unit-test:
       run: pnpm run test:unit
 
