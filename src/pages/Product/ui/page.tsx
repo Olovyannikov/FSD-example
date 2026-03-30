@@ -6,7 +6,7 @@ import { appStarted } from '@/shared/config';
 
 import { Product } from '@/entities/Product';
 
-import { AddToCart } from '@/features/add-to-cart';
+import { AddToCart } from '@/features/cart/add-to-cart';
 
 import { BackControl } from './back';
 

@@ -5,9 +5,9 @@ import { PageLoader } from '@/shared/ui';
 
 import { RootLayout } from '@/widgets/root-layout';
 
-export const IndexPageLazyScreen = createLazyRouteView({
-    route: routes.home,
+export const FavoritesPageLazyScreen = createLazyRouteView({
+    route: routes.favorites,
     view: () => import('./ui/page.tsx'),
     fallback: PageLoader,
-    layout: RootLayout,
+    layout: ({ children }) => <RootLayout title='DogFood | Избранное'>{children}</RootLayout>,
 });

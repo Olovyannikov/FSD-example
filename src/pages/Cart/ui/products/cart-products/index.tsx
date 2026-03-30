@@ -5,7 +5,7 @@ import { useIsLarge } from '@/shared/lib/media';
 
 import { CartModel, CartProduct } from '@/entities/Cart';
 
-import { AddToCart, AddToCartModel } from '@/features/add-to-cart';
+import { AddToCart, AddToCartModel } from '@/features/cart/add-to-cart';
 
 export function CartProducts() {
     const isLarge = useIsLarge();

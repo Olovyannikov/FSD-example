@@ -8,7 +8,8 @@ import { useIsLarge } from '@/shared/lib/media';
 import { ProductCard, ProductModel, PRODUCTS_SCROLL_THRESHOLD } from '@/entities/Product';
 import { UserModel } from '@/entities/User';
 
-import { AddToCart } from '@/features/add-to-cart';
+import { AddToCart } from '@/features/cart/add-to-cart';
+import { AddToFavorite } from '@/features/favorite/add-to-favorite';
 import { FiltersModel } from '@/features/filters';
 
 import { ProductsModel } from '../../model';
@@ -72,7 +73,7 @@ export function Products() {
                                 {...product}
                                 isAuth={isAuthorized}
                                 actionSlot={<AddToCart product={product} />}
-                                // favoriteActionSlot={<FavoriteButton productId={product.id} />}
+                                favoriteActionSlot={<AddToFavorite productId={product.id} />}
                             />
                         </Grid.Col>
                     ))}

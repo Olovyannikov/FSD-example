@@ -6,6 +6,7 @@ import { and, not, or } from 'patronum';
 
 import { CartPageLazyScreen } from '@/pages/Cart';
 import { ErrorPageLazy } from '@/pages/Error';
+import { FavoritesPageLazyScreen } from '@/pages/Favorites';
 import { IndexPageLazyScreen } from '@/pages/Index';
 import { ProductPageLazyScreen } from '@/pages/Product';
 import { ProfilePageLazyScreen } from '@/pages/Profile';
@@ -22,6 +23,7 @@ export const RoutesView = createRoutesView({
         SignInPageLazyScreen,
         SignUpPageLazyScreen,
         ProfilePageLazyScreen,
+        FavoritesPageLazyScreen,
     ],
     otherwise: ErrorPageLazy,
 });

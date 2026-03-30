@@ -6,7 +6,7 @@ import type { RegisterFormRequestDTO, RegisterFormResponseDTO, UpdateUserRequest
 
 export const getUserByIdQuery = createQuery({
     name: 'getUserById',
-    effect: createInternalRequestFx<string, UserResponseDTO>((id = 'me') => ({
+    effect: createInternalRequestFx<string, UserResponseDTO | null>((id = 'me') => ({
         url: `/users/${id}`,
     })),
 });
