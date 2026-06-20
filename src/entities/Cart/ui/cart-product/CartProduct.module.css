@@ -1,0 +1,36 @@
+.productInfo {
+  @media (width >= 768px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: var(--size-3xl);
+  }
+}
+
+.productDescription {
+  @media (width >= 768px) {
+    order: -1;
+    width: 100%;
+    max-width: 244px;
+  }
+}
+
+.productPrice {
+  @media (width >= 768px) {
+    align-items: flex-end;
+    order: 2;
+  }
+}
+
+.cartAction {
+  @media (width >= 768px) {
+    align-self: center;
+    order: 1;
+  }
+}
+
+.removeAction {
+  @media (width >= 768px) {
+    margin: auto;
+  }
+}

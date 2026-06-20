@@ -8,3 +8,7 @@ declare module 'react' {
         [varName: `--${string}`]: string | number | undefined;
     }
 }
+declare module '*.module.css' {
+    const classes: { [key: string]: string };
+    export default classes;
+}

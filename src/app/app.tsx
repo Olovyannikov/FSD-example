@@ -1,9 +1,39 @@
 import { createRoot } from 'react-dom/client';
+import { historyAdapter } from '@argon-router/core';
+import { RouterProvider } from '@argon-router/react';
+import { allSettled, fork } from 'effector';
+import { Provider } from 'effector-react';
+import { createBrowserHistory } from 'history';
+
+import { appStarted } from '@/shared/config';
+import { router } from '@/shared/router';
 
 import { ThemeProvider } from './providers';
+import { RoutesView } from './routes';
 
 import './assets/styles/index.css';
 
 const root = document.getElementById('root') as HTMLDivElement;
 
-createRoot(root).render(<ThemeProvider>Hello World</ThemeProvider>);
+const history = createBrowserHistory();
+
+const scope = fork();
+
+await allSettled(appStarted, {
+    scope,
+});
+
+await allSettled(router.setHistory, {
+    scope,
+    params: historyAdapter(history),
+});
+
+createRoot(root).render(
+    <Provider value={scope}>
+        <ThemeProvider>
+            <RouterProvider router={router}>
+                <RoutesView />
+            </RouterProvider>
+        </ThemeProvider>
+    </Provider>
+);

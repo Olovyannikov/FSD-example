@@ -1,0 +1,6 @@
+.box {
+  @media (width >= 768px) {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+  }
+}

@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import { Container, createTheme, Input, MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
+import { NavigationProgress } from '@mantine/nprogress';
 
 export const theme = createTheme({
     primaryColor: 'yellow',
@@ -51,6 +52,7 @@ export const theme = createTheme({
 export function ThemeProvider({ children }: PropsWithChildren) {
     return (
         <MantineProvider theme={theme}>
+            <NavigationProgress />
             <Notifications />
             {children}
         </MantineProvider>
